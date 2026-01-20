@@ -5,13 +5,13 @@ from vulture import Vulture
 
 
 class AnalizzatoreProgetto:
-    def __init__(self, percorso_cartella):
-        self.percorso_cartella = percorso_cartella
+    def __init__(self, test):
+        self.test = test
         self.file_python = self._recupera_file_py()
 
     def _recupera_file_py(self):
         lista_file = []
-        for radice, _, files in os.walk(self.percorso_cartella):
+        for radice, _, files in os.walk(self.test):
             for file in files:
                 if file.endswith(".py"):
                     lista_file.append(os.path.join(radice, file))
@@ -163,11 +163,11 @@ class AnalizzatoreProgetto:
         for d in dati.get("dip", []):
             if "violazione" in d: score -= 5
         return max(0, score)
-#la sezione punteggio può essere cambiata a piacimento
+
 
     def genera_report_finale(self):
         return {
-            "progetto": self.percorso_cartella,
+            "progetto": self.test,
             "srp": self.analizza_srp(),
             "ocp": self.analizza_ocp(),
             "lsp": self.analizza_lsp(),
