@@ -163,7 +163,7 @@ class AnalizzatoreProgetto:
         for d in dati.get("dip", []):
             if "violazione" in d: score -= 5
         return max(0, score)
-
+#la sezione punteggio può essere cambiata a piacimento
 
     def genera_report_finale(self):
         return {
